@@ -6,7 +6,7 @@ def tipoEspecial(lista, listaespecies):
         if listaespecies['is_baby'] == True:
             tipo.append('baby')
         elif listaespecies['is_legendary'] == True:
-            tipo.append('legenday')
+            tipo.append('legendary')
         elif listaespecies['is_mythical'] == True:
             tipo.append('mythical')
     else:

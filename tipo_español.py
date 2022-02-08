@@ -4,6 +4,13 @@ def tipoEspañol(argumento):
                 'acero', 'fuego', 'agua', 'planta', 'eléctrico', 'psíquico', 'hielo',
                 'dragón', 'oscuro', 'hada', 'bebé', 'legendario', 'mítico']
 
+    #inglesEspañol = {'normal':'normal', 'fighting':'lucha', 'flying':'volador', 'poison':'veneno',
+     #               'ground':'tierra', 'rock':'roca', 'bug':'bicho', 'ghost':'fantasma',
+      #              'steel':'acero', 'fire':'fuego', 'water':'agua', 'grass':'planta', 
+       #             'electric':'eléctrico', 'psychic':'psíquico', 'ice':'hielo', 'dragon':'dragón',
+        #            'dark':'oscuro', 'fairy':'hada', 'baby':'bebé', 'legendary':'legendario',
+         #           'mythical':'mítico'}
+
     if type(argumento) == list:
         listaEspañol = []
         for item in argumento:

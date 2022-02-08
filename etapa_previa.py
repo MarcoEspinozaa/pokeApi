@@ -2,11 +2,12 @@ from get_module import get_info
 
 def preview(diccionario):
     if diccionario['evolves_from_species'] is None:
-        etapaPrevia = ''
+        htmlPreview = ''
     else:
         etapaPrevia = diccionario['evolves_from_species']['name']
+        htmlPreview = f'Etapa previa: {etapaPrevia.capitalize()}'
 
-    return etapaPrevia.capitalize()
+    return htmlPreview
 
 
 if __name__ == '__main__':

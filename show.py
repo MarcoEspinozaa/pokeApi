@@ -14,6 +14,6 @@ def show_pics(html, nombre):
     print('Las información de pokédex se mostrará en tu Navegador...')
     time.sleep(2)
     webbrowser.open(f'{nombre}.html')
-    time.sleep(5)
+    time.sleep(2)
     os.remove(f'{nombre}.html')
     

@@ -8,9 +8,9 @@ def inputMenu():
     op_sys = 'cls' if sys.platform == 'win32' else 'clear'
 
     print('\033[1m' + 'POKÉDEX \n' '\033[0m'.center(50, " "))
-    opcion = input('''Ingrese una opción para Jugar!
-        1. Ingresar
-        0. Salir
+    opcion = input('''Ingrese una opción para comenzar!
+        1. Ingresar a la base de datos pokémon
+        0. Salir del pokédex
     > ''')
     # 1. validar opcion
     opcion = validateOpcion(['0','1'], opcion)
