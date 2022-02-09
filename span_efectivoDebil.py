@@ -1,37 +1,45 @@
 from pipes import Template
 from damage_relations import relacionDaño
-from tipo_español import tipoEspañol
 from get_module import get_info
 from string import Template
 
 def efectivoHtml(efectivoDebil):
+    inglesEspañol = {'normal':'Normal', 'fighting':'Lucha', 'flying':'Volador', 'poison':'Veneno',
+                    'ground':'Tierra', 'rock':'Roca', 'bug':'Bicho', 'ghost':'Fantasma',
+                    'steel':'Acero', 'fire':'Fuego', 'water':'Agua', 'grass':'Planta', 
+                    'electric':'Eléctrico', 'psychic':'Psíquico', 'ice':'Hielo', 'dragon':'Dragón',
+                    'dark':'Siniestro', 'fairy':'Hada', 'baby':'Bebé', 'legendary':'Legendario',
+                    'mythical':'Mítico'}
 
     divSuperEfectivo = ''
-    divDebil = ''
-    divResistente = ''
-    divPocoEficaz = ''
-    divInmune = ''
-    divIneficaz = ''
-
-    divTemplate = Template('<span class="label $tipo">$esp</span>')  
-    
     for item in efectivoDebil[0]:
-        divSuperEfectivo += divTemplate.substitute(tipo = item, esp = tipoEspañol(item).capitalize())+'\n'
+        itemEsp = inglesEspañol[item]
+        divSuperEfectivo = divSuperEfectivo + f'<span class="label {item}">{itemEsp}</span>\n'
 
+    divDebil = ''
     for item in efectivoDebil[1]:
-        divDebil += divTemplate.substitute(tipo = item, esp = tipoEspañol(item).capitalize())+'\n'
+        itemEsp = inglesEspañol[item]
+        divDebil = divDebil + f'<span class="label {item}">{itemEsp}</span>\n'
 
+    divResistente = ''
     for item in efectivoDebil[2]:
-        divResistente += divTemplate.substitute(tipo = item, esp = tipoEspañol(item).capitalize())+'\n'
+        itemEsp = inglesEspañol[item]
+        divResistente = divResistente + f'<span class="label {item}">{itemEsp}</span>\n'
 
+    divPocoEficaz = ''
     for item in efectivoDebil[3]:
-        divPocoEficaz += divTemplate.substitute(tipo = item, esp = tipoEspañol(item).capitalize())+'\n'
+        itemEsp = inglesEspañol[item]
+        divPocoEficaz = divPocoEficaz + f'<span class="label {item}">{itemEsp}</span>\n'
 
+    divInmune = ''
     for item in efectivoDebil[4]:
-        divInmune += divTemplate.substitute(tipo = item, esp = tipoEspañol(item).capitalize())+'\n'
+        itemEsp = inglesEspañol[item]
+        divInmune = divInmune + f'<span class="label {item}">{itemEsp}</span>\n'
 
+    divIneficaz = ''
     for item in efectivoDebil[5]:
-        divIneficaz += divTemplate.substitute(tipo = item, esp = tipoEspañol(item).capitalize())+'\n'
+        itemEsp = inglesEspañol[item]
+        divIneficaz = divIneficaz + f'<span class="label {item}">{itemEsp}</span>\n'
         
     return divSuperEfectivo, divDebil, divResistente, divPocoEficaz, divInmune, divIneficaz
 

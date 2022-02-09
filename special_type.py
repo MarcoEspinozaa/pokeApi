@@ -2,7 +2,9 @@ from get_module import get_info
 
 def tipoEspecial(lista, listaespecies):
     if len(lista) == 1:
+        #Se obtiene el tipo de pokemon normal, Ej: Volador
         tipo = [lista[0]['type']['name']]
+        #En caso de cumplir con la condición particular se agrega el tipo particular
         if listaespecies['is_baby'] == True:
             tipo.append('baby')
         elif listaespecies['is_legendary'] == True:
@@ -10,7 +12,9 @@ def tipoEspecial(lista, listaespecies):
         elif listaespecies['is_mythical'] == True:
             tipo.append('mythical')
     else:
+        #Se obtiene el tipo de pokemon normal, Ej: Volador, Hielo
         tipo = [lista[0]['type']['name'], lista[1]['type']['name']]
+        #En caso de cumplir con la condición particular se agrega el tipo particular
         if listaespecies['is_baby'] == True:
             tipo.append('baby')
         elif listaespecies['is_legendary'] == True:

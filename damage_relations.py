@@ -1,118 +1,86 @@
 from get_module import get_info
+from special_type import tipoEspecial
 
-def relacionDaño(type):
-    if len(type) == 1:
-        tipo = [type[0]['type']['name']]
+#Se crea una función para una operación repetitiva
+def rellenaLista(listaDamage):
+    listaSalida = []
+    for item in listaDamage:
+            listaSalida.append(item['name'])
+
+    return listaSalida
+
+
+def relacionDaño(tipo):
+    if len(tipo) == 1:
         damage_relations = get_info(f'https://pokeapi.co/api/v2/type/{tipo[0]}')['damage_relations']
 
         #Super Efectivo
-        superEfectivo = damage_relations['double_damage_to']
-        efectivo = []
-        for item in superEfectivo:
-            efectivo.append(item['name'])
+        efectivo = rellenaLista(damage_relations['double_damage_to'])
         #Debil Contra
-        debil = []
-        debilContra = damage_relations['double_damage_from']
-        for item in debilContra:
-            debil.append(item['name'])
+        debil = rellenaLista(damage_relations['double_damage_from'])
         #Resistente contra
-        resistente = []
-        resistenteContra = damage_relations['half_damage_from']
-        for item in resistenteContra:
-            resistente.append(item['name'])
+        resistente = rellenaLista(damage_relations['half_damage_from'])
         #Poco Eficaz
-        pocoEficaz = []
-        pocoEficazContra = damage_relations['half_damage_to']
-        for item in pocoEficazContra:
-            pocoEficaz.append(item['name'])
+        pocoEficaz = rellenaLista(damage_relations['half_damage_to'])
         #Inmune
-        inmune = []
-        inmuneContra = damage_relations['no_damage_from']
-        for item in inmuneContra:
-            inmune.append(item['name'])
+        inmune = rellenaLista(damage_relations['no_damage_from'])
         #Ineficaz
-        ineficaz = []
-        inefizasContra = damage_relations['no_damage_to']
-        for item in inefizasContra:
-            ineficaz.append(item['name'])
+        ineficaz = rellenaLista(damage_relations['no_damage_to'])
 
         return efectivo, debil, resistente, pocoEficaz, inmune, ineficaz
 
     else:
-    ##### --> Relacion daño primer de los dos tipos  ####    
-        tipo = [type[0]['type']['name'], type[1]['type']['name']]
+    ##### --> Relacion daño dos tipos  ####    
         damage_relations1 = get_info(f'https://pokeapi.co/api/v2/type/{tipo[0]}')['damage_relations']
         damage_relations2 = get_info(f'https://pokeapi.co/api/v2/type/{tipo[1]}')['damage_relations']
 
         #Super Efectivo
-        efectivo = []
-        superEfectivo = damage_relations1['double_damage_to']
-        for item in superEfectivo:
-            efectivo.append(item['name'])
-        superEfectivo = damage_relations2['double_damage_to']
-        for item in superEfectivo:
-            efectivo.append(item['name'])
-        if len(efectivo) > 0:
-            efectivo = set(efectivo)
+        efectivo = set(rellenaLista(damage_relations1['double_damage_to'])+
+                        rellenaLista(damage_relations2['double_damage_to']))
         #Debil Contra
-        debil = []
-        debilContra = damage_relations1['double_damage_from']
-        for item in debilContra:
-            debil.append(item['name'])
-        debilContra = damage_relations2['double_damage_from']
-        for item in debilContra:
-            debil.append(item['name'])
-        if len(debil) > 0:
-            debil = set(debil)
+        debil = set(rellenaLista(damage_relations1['double_damage_from'])+
+                    rellenaLista(damage_relations2['double_damage_from']))
         #Resistente contra
-        resistente = []
-        resistenteContra = damage_relations1['half_damage_from']
-        for item in resistenteContra:
-            resistente.append(item['name'])
-        resistenteContra = damage_relations2['half_damage_from']
-        for item in resistenteContra:
-            resistente.append(item['name'])
-        if len(resistente) > 0:
-            resistente = set(resistente)
+        resistente = set(rellenaLista(damage_relations1['half_damage_from'])+
+                        rellenaLista(damage_relations2['half_damage_from']))
         #Poco Eficaz
-        pocoEficaz = []
-        pocoEficazContra = damage_relations1['half_damage_to']
-        for item in pocoEficazContra:
-            pocoEficaz.append(item['name'])
-        pocoEficazContra = damage_relations2['half_damage_to']
-        for item in pocoEficazContra:
-            pocoEficaz.append(item['name'])
-        if len(pocoEficaz) > 0:
-            pocoEficaz = set(pocoEficaz)
-        #Inmune
-        inmune = []
-        inmuneContra = damage_relations1['no_damage_from']
-        for item in inmuneContra:
-            inmune.append(item['name'])
-        inmuneContra = damage_relations2['no_damage_from']
-        for item in inmuneContra:
-            inmune.append(item['name'])
-        if len(inmune) > 0:
-            inmune = set(inmune)
-        #Ineficaz
-        ineficaz = []
-        inefizasContra = damage_relations1['no_damage_to']
-        for item in inefizasContra:
-            ineficaz.append(item['name'])
-        inefizasContra = damage_relations2['no_damage_to']
-        for item in inefizasContra:
-            ineficaz.append(item['name'])
-        if len(ineficaz) > 0:
-            ineficaz = set(ineficaz)
+        pocoEficaz = set(rellenaLista(damage_relations1['half_damage_to'])+
+                        rellenaLista(damage_relations2['half_damage_to']))
+        #Inmune: Es una de las dos listas que pueden venir vacías, es por eso la condición
+        if len(rellenaLista(damage_relations1['no_damage_from'])) > 0 or len(rellenaLista(damage_relations2['no_damage_from'])) > 0:
+            inmune = set(rellenaLista(damage_relations1['no_damage_from'])+
+                         rellenaLista(damage_relations2['no_damage_from']))
+        else:
+            inmune = []
+        #Ineficaz: Es una de las dos listas que pueden venir vacías, es por eso la condición
+        if len(rellenaLista(damage_relations1['no_damage_to'])) > 0 or len(rellenaLista(damage_relations2['no_damage_to'])) > 0:
+            ineficaz = set(rellenaLista(damage_relations1['no_damage_to'])+
+                            rellenaLista(damage_relations2['no_damage_to']))
+        else:
+            ineficaz = []
+        
+        
 
     return efectivo, debil, resistente, pocoEficaz, inmune, ineficaz
 
+
 if __name__ == '__main__':
+    #### Prueba 1 ####
+    #Probar cambiando el nombre del pokémon
     nombrePokemon = 'charmander'
-    tipo = get_info(f'https://pokeapi.co/api/v2/pokemon/{nombrePokemon}')['types']
+    pokemonType = get_info(f'https://pokeapi.co/api/v2/pokemon/{nombrePokemon}')['types']
+    especiePokemon = get_info(f'https://pokeapi.co/api/v2/pokemon-species/{nombrePokemon}')
+    #Obteniendo la lista de tipos de este pokémon en particular
+    tipo = tipoEspecial(pokemonType, especiePokemon)
     print(nombrePokemon)
     print(relacionDaño(tipo))
+
+    #### Prueba 2 ####
+    #Probar cambiando el nombre del pokémon
     nombrePokemon = 'articuno'
-    tipo = get_info(f'https://pokeapi.co/api/v2/pokemon/{nombrePokemon}')['types']
+    pokemonType = get_info(f'https://pokeapi.co/api/v2/pokemon/{nombrePokemon}')['types']
+    especiePokemon = get_info(f'https://pokeapi.co/api/v2/pokemon-species/{nombrePokemon}')
+    #Obteniendo la lista de tipos de este pokémon en particular
+    tipo = tipoEspecial(pokemonType, especiePokemon)
     print(nombrePokemon)
     print(relacionDaño(tipo))

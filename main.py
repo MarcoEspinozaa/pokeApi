@@ -45,7 +45,7 @@ while True:
     descripcionesEspañol = descEspañol(especiePokemon['flavor_text_entries'])
     descripcion = descripcionesEspañol #--> Variable $descripcion a modificar html base
     #Relaciones de daño --> efectivo, debil, resistente, poco eficaz, inmune, ineficaz
-    efectivoDebil = relacionDaño(pokemon['types'])
+    efectivoDebil = relacionDaño(tipos)
     spanSupEfec, spanDebil, spanResistente, spanEficaz, spanInmune, spanIneficaz = efectivoHtml(efectivoDebil)
     #Foto frontal del pokémon
     imagen = pokemon['sprites']['front_default']
@@ -66,6 +66,4 @@ while True:
     show_pics(html,'output')
     #Limpia pantalla para empezar de nuevo
     os.system(op_sys)
-
-
 

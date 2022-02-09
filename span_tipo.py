@@ -1,24 +1,21 @@
 from string import Template
-from tipo_español import tipoEspañol
 from special_type import tipoEspecial
 from get_module import get_info
 
 def new_spanTipo(tipos):
-    #Traduce los tipos de pokémon en inglés al español
-    enEspañol = tipoEspañol(tipos)
+    inglesEspañol = {'normal':'Normal', 'fighting':'Lucha', 'flying':'Volador', 'poison':'Veneno',
+                    'ground':'Tierra', 'rock':'Roca', 'bug':'Bicho', 'ghost':'Fantasma',
+                    'steel':'Acero', 'fire':'Fuego', 'water':'Agua', 'grass':'Planta', 
+                    'electric':'Eléctrico', 'psychic':'Psíquico', 'ice':'Hielo', 'dragon':'Dragón',
+                    'dark':'Siniestro', 'fairy':'Hada', 'baby':'Bebé', 'legendary':'Legendario',
+                    'mythical':'Mítico'}
 
-    #Crea líneas html dependiendo del tipo o tipos del pokémon seleccionado
-    if len(tipos) == 1:
-        tipoHtml = f'<span class="label {tipos[0]}">{enEspañol[0].capitalize()}</span>'
-    elif len(tipos) == 2 :
-        tipoHtml = (f''' <span class="label {tipos[0]}">{enEspañol[0].capitalize()}</span>
-            <span class="label {tipos[1]}">{enEspañol[1].capitalize()}</span> ''')
-    else:
-        tipoHtml = (f''' <span class="label {tipos[0]}">{enEspañol[0].capitalize()}</span>
-            <span class="label {tipos[1]}">{enEspañol[1].capitalize()}</span>
-            <span class="label {tipos[2]}">{enEspañol[2].capitalize()}</span> ''')
+    span_str = ''
+    for item in tipos:
+        itemEsp = inglesEspañol[item]
+        span_str = span_str + f'<span class="label {item}">{itemEsp}</span>\n'
 
-    return tipoHtml
+    return span_str
 
 
 if __name__ == '__main__':

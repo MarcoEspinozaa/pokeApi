@@ -4,7 +4,7 @@ with open("pokemon_list.txt", "r") as f:
     
 pokemon_lista = [elemento.strip('\n') for elemento in pokemon_lista]
 
-#import data as d
+#import data as d --> No justiciaba crear un módulo exclusivamente para un par de párrafos
 
 def validate(name, p_l = pokemon_lista): #mensaje = d.validacion_pokemon):
     while name not in p_l:

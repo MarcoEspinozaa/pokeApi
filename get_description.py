@@ -5,7 +5,7 @@ descripcionesEspañol = []
 def descEspañol(lista):
     for item in lista:
         if item['language']['name'] == 'es':
-            descripcionesEspañol.append(item['flavor_text'])
+            descripcionesEspañol.append(item['flavor_text'].replace("\n"," "))
             descripcion = random.choice(descripcionesEspañol)
 
     return descripcion
