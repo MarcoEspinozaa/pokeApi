@@ -10,6 +10,7 @@ from show import show_pics
 from input import inputMenu
 from span_tipo import new_spanTipo
 from span_efectivoDebil import efectivoHtml
+from normal_type import tipos
 
 import time
 import os
@@ -39,13 +40,14 @@ while True:
     estadistics = estadisticas(pokemon['stats'])
     hp , atk, defen, spAtk, spDef, vel = estadistics #--> Variables $hp, $atk, etc.. a modificar html base 
     #Obetener tipo y tipos especiales(baby, legendary o mythical)
-    tipos = tipoEspecial(pokemon['types'],especiePokemon) #--> Agrega tipo baby, legandary o mythical de ser necesario
-    spanTipo = new_spanTipo(tipos) #--> Variable $spanTipo a modificar html base
+    tiposNormal = tipos(pokemon['types'])
+    tiposSpecial = tipoEspecial(pokemon['types'],especiePokemon) #--> Agrega tipo baby, legandary o mythical de ser necesario
+    spanTipo = new_spanTipo(tiposSpecial) #--> Variable $spanTipo a modificar html base
     #Obtener descripcion aleatorea
     descripcionesEspañol = descEspañol(especiePokemon['flavor_text_entries'])
     descripcion = descripcionesEspañol #--> Variable $descripcion a modificar html base
     #Relaciones de daño --> efectivo, debil, resistente, poco eficaz, inmune, ineficaz
-    efectivoDebil = relacionDaño(tipos)
+    efectivoDebil = relacionDaño(tiposNormal)
     spanSupEfec, spanDebil, spanResistente, spanEficaz, spanInmune, spanIneficaz = efectivoHtml(efectivoDebil)
     #Foto frontal del pokémon
     imagen = pokemon['sprites']['front_default']

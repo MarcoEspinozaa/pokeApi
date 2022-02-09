@@ -58,10 +58,8 @@ def relacionDaño(tipo):
                             rellenaLista(damage_relations2['no_damage_to']))
         else:
             ineficaz = []
-        
-        
 
-    return efectivo, debil, resistente, pocoEficaz, inmune, ineficaz
+        return efectivo, debil, resistente, pocoEficaz, inmune, ineficaz
 
 
 if __name__ == '__main__':

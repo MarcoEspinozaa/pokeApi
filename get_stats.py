@@ -1,9 +1,9 @@
 from get_module import get_info
 
 #stats = {}
-stats= []
 #Se necesita solo el valor de las claves, pero para futuros usos se deja el código a disposición
 def estadisticas(lista):
+    stats= []
     for item in lista:
         stats.append(item['base_stat']) 
     #for item in lista:
