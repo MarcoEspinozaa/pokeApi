@@ -1,5 +1,4 @@
 from get_module import get_info
-from poke_validation import validate
 from etapa_previa import preview
 from get_stats import estadisticas
 from special_type import tipoEspecial
@@ -50,8 +49,7 @@ while True:
     efectivoDebil = relacionDaño(tiposNormal)
     spanSupEfec, spanDebil, spanResistente, spanEficaz, spanInmune, spanIneficaz = efectivoHtml(efectivoDebil)
     #Foto frontal del pokémon
-    imagen = pokemon['sprites']['front_default']
-    img_url = imagen #--> Variable $img_url a modificar html base
+    img_url = pokemon['sprites']['front_default'] #--> Variable $img_url a modificar html base
 
     ######## Editando archivo html ########
     with open('base.html','r') as infile:
