@@ -1,8 +1,8 @@
 from get_module import get_info
 import random
 
-descripcionesEspañol = []
 def descEspañol(lista):
+    descripcionesEspañol = []
     for item in lista:
         if item['language']['name'] == 'es':
             descripcionesEspañol.append(item['flavor_text'].replace("\n"," "))

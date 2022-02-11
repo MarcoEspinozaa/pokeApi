@@ -43,3 +43,8 @@ def inputMenu():
         nombrePokemon = validate(nombrePokemon) #--> Nombre en minúscula, el api es sensible a mayúscula
 
         return nombrePokemon
+
+
+
+if __name__ == '__main__':
+    inputMenu()
