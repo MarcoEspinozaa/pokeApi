@@ -1,2 +1,2 @@
 # pokeApi
-prueba modulo 3, pokeApi
+Consumo de una api para mostrar informacion en un template.
